@@ -4,7 +4,7 @@ import Colors from "@/src/constants/Colors";
 
 import { Text, View } from "./Themed";
 import { Product } from "../types";
-import { Link } from "expo-router";
+import { Link, useSegments } from "expo-router";
 
 type ProductListItemProps = {
   product: Product;
@@ -14,8 +14,9 @@ export const defaultPizzaImage =
   "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default/png";
 
 export default function ProductListItem({ product }: ProductListItemProps) {
+  const segments = useSegments();
   return (
-    <Link href={`/menu/${product.id}`} asChild>
+    <Link href={`/${segments[0]}/menu/${product.id}`} asChild>
       <Pressable style={{ padding: 10, flex: 1, maxWidth: "50%" }}>
         <Image
           source={{ uri: product.image || defaultPizzaImage }}
